@@ -90,7 +90,7 @@ function App() {
         <Navbar />
         <Searchbar onSearch={onSearchHandler} />
         {notFound ? (
-          <div class-name="not-found-text"> Pokemon não encontrado! </div>
+          <div className="not-found-text"> Pokemon não encontrado! </div>
         ) : (
           <Pokedex
             pokemons={pokemons}

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import FavoriteContext from "../contexts/favoritesContext";
 
 const Pokemon = (props) => {
+  const { favoritePokemons, updateFavoritePokemons } =
+    useContext(FavoriteContext);
   const { pokemon } = props;
   const onHeartClick = () => {
-      console.log("Pode favoritar")
-  }
-  const heart = "❤️"
+      updateFavoritePokemons(pokemon.name)
+  };
+  const heart = favoritePokemons.includes(pokemon.name) ? "❤️" : "🤍";
   return (
     <div className="pokemon-card">
       <div className="pokemon-image-container">
@@ -23,12 +26,17 @@ const Pokemon = (props) => {
         <div className="card-bottom">
           <div className="pokemon-type">
             {pokemon.types.map((type, index) => {
-                return (
-                    <div key={index} className="pokemon-type-text"> {type.type.name} </div>
-                )
+              return (
+                <div key={index} className="pokemon-type-text">
+                  {" "}
+                  {type.type.name}{" "}
+                </div>
+              );
             })}
           </div>
-          <button className="pokemon-heart-btn" onClick={onHeartClick}>{heart}</button>
+          <button className="pokemon-heart-btn" onClick={onHeartClick}>
+            {heart}
+          </button>
         </div>
       </div>
     </div>
